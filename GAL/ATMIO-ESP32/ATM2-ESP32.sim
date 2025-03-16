@@ -1,0 +1,48 @@
+%SIGNAL
+PIN  13 = !CS0 
+PIN  14 = !CS1 
+PIN  15 = !CS2 
+PIN   9 =  CTS4 
+PIN   8 =  CTS5 
+PIN   7 =  CTS6 
+PIN   6 =  CTS7 
+PIN  12 =  MR 
+PIN  11 = !RESET 
+PIN   5 =  SET4 
+PIN   4 =  SET5 
+PIN   3 =  SET6 
+PIN   2 =  SET7 
+%END
+
+%FIELD
+%END
+
+%EQUATION
+CS0 =>
+    !CTS6 & !CTS7 & !SET6 & !SET7
+  # !CTS6 & CTS7 & !SET6 & SET7
+  # CTS6 & !CTS7 & SET6 & !SET7
+  # CTS6 & CTS7 & SET6 & SET7
+
+CS1 =>
+    !CTS4 & !CTS5 & !SET4 & !SET5
+  # !CTS4 & CTS5 & !SET4 & SET5
+  # CTS4 & !CTS5 & SET4 & !SET5
+  # CTS4 & CTS5 & SET4 & SET5
+
+CS2 =>
+    !CS0 & !CS1
+
+MR.oe  =>
+    RESET
+
+CS0.oe  =>
+    1 
+
+CS1.oe  =>
+    1 
+
+CS2.oe  =>
+    1 
+
+%END
